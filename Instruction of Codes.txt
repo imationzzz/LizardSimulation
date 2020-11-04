@@ -1,0 +1,33 @@
+Instruction of the lizard simulation
+
+1. File description
+1) RunLizard.m: Main code of the lizard simulation
+2) A1Mat.m ~ A15Mat.m: The kinetic energy matrix of the lizard model in joint space
+3) B3Mat.m ~ B32Mat.m: The vector of centrifugal and Coriolis forces of the lizard model in joint space (1)
+4) C1_5Mat.m ~ C31_33Mat.m: The vector of centrifugal and Coriolis forces of the lizard model in joint space (2)
+5) COM.m: Calculation for the center of mass of the lizard model
+6) COMIn.m: Calculation for the initial position of the COM (Not used)
+7) COMNq.m: Calculation for virtual joint X, Y
+8) ConDynEquAndVirJForHind.m: Joint torque calculation by inverse dynamics when the lizard model touches on the ground.
+9) DynEquAndVirJ.m: Joint torque calculation by inverse dynamics when the lizard model does not touch on the ground.
+10) gMat.m: The potential vector of the lizard model in joint space
+11) PosJ.m: Positions of the joints of the lizard model
+
+2. Main code file configuration
+1) Design Variable: The joint angle's amplitudes and the phases are determined
+2) Simulation setting: PeriodTime, the number of iterations in one period, and repeat number of the simulation are set
+3) Initial setting: The lizard model's mass, body length, width, height are determined. Also, the position of the shoulder and pelvic are determined. The virtual joint values are setup.
+4) Failure Check Kinematics: This step calculates the joint position, and the lizard model's height is determined.
+5) Forward-Backward Dynamics Simulation
+ a) Calculation for the center of the mass of the lizard model at the initial state
+ b) Checking the contact between the lizard model's foot and the ground
+ c) Case 1: Left foot contact
+  - Calculation for the joint torque, the joint's position, and the center of the mass of the lizard model
+  - using 'ConDynEquAndVirJForHind.m'
+ d) Case 2: Right foot contact
+  - Calculation for the joint torque, the joint's position, and the center of the mass of the lizard model
+  - using 'ConDynEquAndVirJForHind.m'
+ e) Case 3: Non-contact
+  - Calculation for the joint torque, the joint's position, and the center of the mass of the lizard model
+  - using 'DynEquAndVirJ.m'
+6) Animation: Showing the lizard model's locomotion using the saved joint positions. 
